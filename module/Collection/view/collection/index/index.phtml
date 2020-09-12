@@ -1,0 +1,39 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ */
+
+$title = 'List of collections';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+
+<table class="table">
+<tr>
+	<th>&nbsp;</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th> </th>
+</tr>
+<tr>
+	<td><img src="" width="40px" width="40px"></img></td>
+		<td><b>All products</b></td>
+		<td>All products.</td>
+		<td>
+				<a href="<?= $this->url('collection', ['action' => 'view', 'id' => 0]) ?>">View this collection</a>
+		</td>
+</tr>
+<?php if (isset ($this -> collections))
+	foreach ($this -> collections as $collection) : ?>
+    <tr>
+    	<td><img src="<?= $collection->getImageURL() ?>" width="40px" width="40px"></img></td>
+        <td><b><?= $collection->getName() ?></b></td>
+        <td><?= $collection->getDescription() ?></td>
+        <td>
+            <a href="<?= $this->url('collection', ['action' => 'view', 'id' => $collection->getUid()]) ?>">View this collection</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+
+
+</table>

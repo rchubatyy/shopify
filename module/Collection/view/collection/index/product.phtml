@@ -1,0 +1,39 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ */
+
+$title = 'Collection: ';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title).$this->escapeHtml($this->name) ?></h1>
+<table class="table">
+<tr>
+	<th>&nbsp;</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Stock</th>
+    <th>Also in</th>
+</tr>
+<?php if (isset ($this -> products))
+	foreach ($this -> products as $product) : ?>
+    <tr>
+    	<td><img src="<?= $product->getImageURL() ?>" width="40px" width="40px"></img></td>
+        <td><b><?= $product->getName() ?></b></td>
+        <td><?= $product->getDescription() ?></td>
+        <td>₴<?= $product->getPrice() ?></td>
+        <td><?= $product->getStock() ?></td>
+        <td>
+        <?php foreach ($product->getCollections() as $col) : ?>
+          <div>
+          <a href="<?= $this->url('collection', ['action' => 'view', 'id' => $col->getUid()]) ?>"><?= $col->getName() ?></a>
+        </div>
+        <?php endforeach; ?>
+      </td>
+    </tr>
+
+<?php endforeach; ?>
+
+
+</table>
