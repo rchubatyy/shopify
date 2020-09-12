@@ -20,8 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `shopify`
 --
-DROP TABLE IF EXISTS `shopify`;
-CREATE TABLE IF NOT EXISTS `shopify`;
+DROP DATABASE IF EXISTS `shopify`;
+CREATE DATABASE IF NOT EXISTS `shopify`;
 USE `shopify`;
 
 -- --------------------------------------------------------
